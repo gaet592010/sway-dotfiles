@@ -1,0 +1,10 @@
+# Exemple de configuration Sway
+set $mod Mod4
+font pango:monospace 10
+floating_modifier $mod
+
+bindsym $mod+Return exec foot
+bindsym $mod+d exec wofi --show drun
+
+exec waybar
+exec mako
