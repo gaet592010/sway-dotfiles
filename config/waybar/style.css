@@ -1,4 +1,22 @@
 * {
-    font-family: monospace;
-    font-size: 11px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #dcdfe1;
+}
+
+box.module,
+label.module {
+    padding: 0 20px;
+}
+
+box#monitor label#network {
+  min-width: 100px
+}
+
+box#hardware label {
+  padding: 0 10px;
+}
+
+box#power label {
+  padding: 0 10px;
 }

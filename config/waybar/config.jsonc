@@ -1,0 +1,136 @@
+{
+  "layer": "top",
+  "height": 40,
+  "output": "DP-6",
+  "modules-left": ["group/monitor"],
+  "modules-center": ["clock"],
+  "modules-right": ["tray", "group/hardware", "group/power"],
+  "group/monitor": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "memory#swap",
+      "network#up",
+      "network#down"
+    ]
+  },
+  "cpu": {
+    "states": {
+      "low": 0,
+      "medium": 50,
+      "high":75
+    },
+    "format-low": "<span color='#f8f8f2'>󰘚 {usage}% </span>", // white
+    "format-medium": "<span color='#ffffa5'>󰘚 {usage}%</span>", // yellow
+    "format-high": "<span color='#dd532e'>󰘚 {usage}%</span>", //red
+    "interval": 1
+  },
+  "memory": {
+    "states": {
+      "low": 0,
+      "medium": 50,
+      "high":75
+    },
+    "format-low": "<span color='#f8f8f2'>󰍛 {percentage}% </span>", // white
+    "format-medium": "<span color='#ffffa5'>󰍛 {percentage}%</span>", // yellow
+    "format-high": "<span color='#dd532e'>󰍛 {percentage}%</span>", //red
+    "interval": 1
+  },
+  "memory#swap": {
+    "states": {
+      "low": 0,
+      "medium": 50,
+      "high":75
+    },
+    "format-low": "<span color='#f8f8f2'>󰓡 {swapPercentage}% </span>", // white
+    "format-medium": "<span color='#ffffa5'>󰓡 {swapPercentage}%</span>", // yellow
+    "format-high": "<span color='#dd532e'>󰓡 {swapPercentage}%</span>", //red
+    "interval": 1
+  },
+  "network#up": {
+    "format": "󰁝 {bandwidthUpOctets} ",
+    "interval": 1
+  },
+  "network#down": {
+    "format": "󰁅 {bandwidthDownOctets} ",
+    "interval": 1
+  },
+  "clock": {
+    "format": "{:L%a %d %b %H:%M:%S}",
+    "interval": 1,
+    "timezone": "Europe/Paris"
+  },
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      
+      "network#state",
+      "battery", 
+      "backlight",
+      "wireplumber"
+    ]
+  },
+  "network#state": {
+    "format-wifi": " {icon} {signalStrength}%",
+    "format-ethernet": "  Cablé ",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-linked": " 󰈁 {ifname} (Pas d'IP) ",
+    "format-disconnected": " 󰈂 Déconnecté ",
+    "interval": 1
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-right-click": "pavucontrol",
+    "format-icons": ["󰕿", "󰖀", "󰕾"]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {icon} {capacity}% ",
+    "format-charging": " 󰂄 {capacity}%",
+    "interval": 1,
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "backlight": {
+    "format": " {icon} {percent}%",
+    "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"]
+  },
+  "bluetooth": {
+    "format": "  {status} ",
+    "format-connected": "  {device_alias} ",
+    "format-connected-battery": " {device_alias}{device_battery_percentage}% ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10
+  },
+  "group/power": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/lock",
+      "custom/reboot",
+      "custom/power"
+    ]
+  },
+  "custom/lock": {
+    "format": "",
+    "on-click": "loginctl lock-session"
+  },
+  "custom/reboot": {
+    "format": "",
+    "on-click": "systemctl reboot"
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "systemctl poweroff"
+  }
+}
